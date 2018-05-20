@@ -4,12 +4,13 @@ namespace App\Http\Controllers;
 use App\Broadcast;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
 {
     public function show()
     {
-    	$datas = Broadcast::all();
+    	$datas = Broadcast::latest()->get();
     	return view('dashboard/dashboard', compact('datas'));
     }
     public function store()
