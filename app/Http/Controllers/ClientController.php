@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Broadcast;
 
 class ClientController extends Controller
 {
     public function show()
     {
-    	return view('client/client');
+    	$datas = Broadcast::latest()->get();
+    	return view('client/client', compact('datas'));
     }
 }

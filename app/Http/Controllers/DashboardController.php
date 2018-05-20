@@ -15,6 +15,7 @@ class DashboardController extends Controller
     }
     public function store()
     {
+    	// if($request->hasFile())
 		Broadcast::create([
 			'idUser' => '1',
 			'type' => 'txt',
