@@ -6,3 +6,7 @@
 		@yield('content')
 	</div>
 @endsection
+
+@section('script-main')
+	@yield('script')
+@endsection

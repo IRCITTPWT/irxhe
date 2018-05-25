@@ -11,7 +11,10 @@
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
 
+
     <link rel="stylesheet" type="text/css" href="{{ asset('css/material-kit.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/owl.carousel.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/owl.theme.default.min.css')}}">
 
     <title></title>
   </head>
@@ -43,6 +46,7 @@
     <script src="{{ asset('js/vertical-nav.js')}}"></script>
     <!-- Material Kit Core initialisations of plugins and Bootstrap Material Design Library -->
     <script src="{{ asset('js/material-kit.min.js')}}"></script>  
-
+    <script src="{{ asset('js/owl.carousel.js')}}"></script>
+    @yield('script-main')
   </body>
 </html>
