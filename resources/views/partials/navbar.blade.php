@@ -9,6 +9,9 @@
         <li class="nav-item active">
           <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
         </li>
+        <li class="nav-item ">
+            <a class="nav-link" href="https://hangouts.google.com/webchat/start">Hangout <span class="sr-only">(current)</span></a>
+        </li>
       </ul>
       <ul class="navbar-nav ml-auto">
           @if(\Auth::check())
@@ -17,8 +20,11 @@
               {{ \Auth::user()->name }}
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" href="#">Add User</a>
-              <a class="dropdown-item" href="#">Another action</a>
+              @if(auth()->user()->role_id == 1)
+                <a class="dropdown-item" href="{{ route('dashboard') }}">Dashvoard</a>
+              @else
+                <a class="dropdown-item" href="{{ route('client') }}">Client</a>
+              @endif
               <a class="dropdown-item" href="{{ route('logout') }}"onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                   {{ __('Logout') }}
               </a>
@@ -29,7 +35,7 @@
             </div>
           </li>
           @else
-          <li class="nav-item active">
+          <li class="nav-item">
             <a class="nav-link" href="{{ route('login') }}">Login <span class="sr-only">(current)</span></a>
           </li>
           @endif

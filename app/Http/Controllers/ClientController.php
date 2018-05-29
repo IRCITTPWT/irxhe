@@ -9,8 +9,9 @@ class ClientController extends Controller
 {
     public function show()
     {
-    	// $datas = Broadcast::where('cabang', $cabang)->latest()->get();
-    	$datas = Broadcast::all();
-    	return view('client/client', compact('datas'));
+    	$user = \App\User::where('id', auth()->user()->id)->first();
+    	$datas = Broadcast::where('tujuan', $user->cabang)->latest()->get();
+    	$alls = Broadcast::where('tujuan', 'all')->latest()->get();
+    	return view('client/client', compact('datas', 'alls'));
     }
 }

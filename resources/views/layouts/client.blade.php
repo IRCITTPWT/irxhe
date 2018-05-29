@@ -1,9 +1,7 @@
 @extends('layouts.master')
 
 @section('main')
-	<div class="container-fluid">
-		@yield('content')
-	</div>
+	@yield('content')
 @endsection
 
 @section('script-main')
