@@ -23,13 +23,20 @@
 			<div class="card" style="margin:20px 0; height: 370px;">
 				@if($data->img)
 				<img style="min-height: 200px; width: 100%;" class="card-img-top" src="{{ asset('storage/img/') }}/{{ $data->img }}" alt="Card image cap">
+				@elseif($data->vid)
+				<video class="embed-responsive embed-responsive-21by9" controls>
+				  <source class="embed-responsive-item" src="{{ asset('storage/vid/')}}" type="video/mp4">
+				  Your browser does not support the video tag.
+				</video>
 				@endif
-			  	<div class="card-body">
-			  		<div class="card-category text-info">Broadcast Text</div>
-			  		<div class="card-description">
-			    		{{ $data->content }}
-			  		</div>
-			  	</div>
+				@if($data->content)
+				  	<div class="card-body">
+				  		<div class="card-category text-info">Broadcast Text</div>
+				  		<div class="card-description">
+				    		{{ $data->content }}
+				  		</div>
+				  	</div>
+				@endif
 			</div>
 		</div>
 		@endforeach

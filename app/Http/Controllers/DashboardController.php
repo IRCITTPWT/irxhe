@@ -25,26 +25,45 @@ class DashboardController extends Controller
     }
     public function store(Request $request)
     {
-    	$this->validate($request, [
-    		'img' => 'image'
-    	]);
+    	// $this->validate($request, [
+    	// 	'img' => 'image',
+     //        'vid' => 'video'
+    	// ]);
 
-    	if($request->hasFile('img')){
-    		$fileNameWithExt = $request->file('img')->getClientOriginalName();
-    		$filename = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
-    		$ext = $request->file('img')->getClientOriginalExtension();
-    		$fileNameToStore = $filename.'_'.time().'.'.$ext;
-    		$path = $request->file('img')->storeAs('public/img', $fileNameToStore);
+        if($request->hasFile('img')){
+            $pathImg = $request->file('img')->storeAs('public/img', $fileNameToStoreImg);
+            $fileNameWithExtImg = $request->file('img')->getClientOriginalName();
+            $filenameImg = pathinfo($fileNameWithExtImg, PATHINFO_FILENAME);
+            $extImg = $request->file('img')->getClientOriginalExtension();
+            $fileNameToStoreImg = $filenameImg.'_'.time().'.'.$extImg;
+        }else{
+            $fileNameToStoreImg = '';
+        }
+
+        if ($request->hasFile('vid')) {
+            $fileNameWithExtVid = $request->file('vid')->getClientOriginalName();
+            $filenameVid = pathinfo($fileNameWithExtVid, PATHINFO_FILENAME);
+            $extVid = $request->file('vid')->getClientOriginalExtension();
+            $fileNameToStoreVid = $filenameVid.'_'.time().'.'.$extVid;
+            $pathVid = $request->file('vid')->storeAs('public/vid', $fileNameToStoreVid);
     	}else{
-    		$fileNameToStore = '';
+            $fileNameToStoreVid = '';
     	}
+
+        //untuk menentukan type broadcast
+        if($fileNameToStoreVid){
+            $type = 'vid';
+        }else{
+            $type = 'txt';
+        }
+
 		Broadcast::create([
-			'idUser' => '1',
-			'type' => 'txt',
+			'idUser' => auth()->user()->id,
+			'type' => $type,
 			'tujuan' =>  request('tujuan'),
 			'content' => request('content'),
-			'img' => $fileNameToStore,
-			'vid' => '',
+			'img' => $fileNameToStoreImg,
+			'vid' => $fileNameToStoreVid,
 		]);
 
 		return redirect()->back();
