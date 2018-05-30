@@ -25,17 +25,17 @@ class DashboardController extends Controller
     }
     public function store(Request $request)
     {
-    	// $this->validate($request, [
-    	// 	'img' => 'image',
-     //        'vid' => 'video'
-    	// ]);
+    	$this->validate($request, [
+    		'img' => 'image',
+            'vid' => 'mimetypes:video/avi,video/mpeg,video/quicktime'
+    	]);
 
         if($request->hasFile('img')){
-            $pathImg = $request->file('img')->storeAs('public/img', $fileNameToStoreImg);
             $fileNameWithExtImg = $request->file('img')->getClientOriginalName();
             $filenameImg = pathinfo($fileNameWithExtImg, PATHINFO_FILENAME);
             $extImg = $request->file('img')->getClientOriginalExtension();
             $fileNameToStoreImg = $filenameImg.'_'.time().'.'.$extImg;
+            $pathImg = $request->file('img')->storeAs('public/img', $fileNameToStoreImg);
         }else{
             $fileNameToStoreImg = '';
         }

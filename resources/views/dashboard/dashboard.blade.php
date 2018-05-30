@@ -31,12 +31,14 @@
 				@endif
 				@if($data->content)
 				  	<div class="card-body">
-				  		<div class="card-category text-info">Broadcast Text</div>
-				  		<div class="card-description">
+				  		<h3 class="card-description">
 				    		{{ $data->content }}
-				  		</div>
+				  		</h3>
 				  	</div>
 				@endif
+				<div class="card-footer">
+					<div class="card-category text-info">Broadcast<span class="text-muted"> Tujuan {{ $data->tujuan }}</span></div>
+				</div>
 			</div>
 		</div>
 		@endforeach

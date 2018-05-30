@@ -23,6 +23,7 @@
 			</div>
 		</div>
 	</div>
+
 	<div class="card-body ">
 		<div class="tab-content">
 			<div class="tab-pane active show" id="text">
@@ -78,6 +79,7 @@
 		<div class="form-group" style="width: 50%;">
 			<label for="exampleFormControlSelect1">Tujuan</label>
 			<select name="tujuan" class="form-control" id="exampleFormControlSelect1" required>
+				<option value=""></option>
 				<option value="all">All</option>
 				<option value="1">Cabang 1</option>
 				<option value="2">Cabang 2</option>
